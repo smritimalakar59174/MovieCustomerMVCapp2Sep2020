@@ -1,0 +1,48 @@
+﻿@model IEnumerable<MovieCustomerWithAuthMVC_app.Models.Customer>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Customer list</h2>
+@if (!Model.Any())
+{
+    <p>My Form</p>
+}
+else
+{
+<table class="table table-bordered table-condensed table-striped">
+    <thead>
+        <tr>
+            <td>Customer Name</td>
+            <td>Discount Rate</td>
+            <td>Edit Customer</td>
+            <td>DOB of Customer</td>
+            <td>Delete Customer</td>
+
+
+        </tr>
+
+    </thead>
+    <tbody>
+        <tr>
+            @foreach (var customer in Model)
+            {
+        <tr>
+
+            <td>@Html.ActionLink(customer.Name, "Details", "Customers", new { id = customer.Id }, null)</td>
+            <td>@customer.MembershipType.DiscountRate%</td>
+            <td>@Html.ActionLink("Edit", "Edit", new { id = customer.Id }, new { @class = "btn btn-success" })</td>
+            <td>@customer.DOB</td>
+            <td>@Html.ActionLink("Delete", "Delete", new { id = customer.Id }, new { @class = "btn btn-danger" })</td>
+
+
+        </tr>
+            }
+
+        </tbody>
+
+    </table>
+}
+
+
